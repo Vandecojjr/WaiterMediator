@@ -2,11 +2,11 @@
 using System.Reflection;
 using TheMediator.Abstractions;
 
-namespace TheMediator;
+namespace WaiterMediator;
 
-public static class TheMediatorDependency
+public static class WaiterMediatorDependency
 {
-    public static IServiceCollection AddTheMediator(this IServiceCollection services, params Assembly[] assemblies)
+    public static IServiceCollection AddMediator(this IServiceCollection services, params Assembly[] assemblies)
     {
         services.AddScoped<IMediator, Mediator>();
 

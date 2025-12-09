@@ -1,7 +1,7 @@
 ﻿using TheMediator.Abstractions;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace TheMediator;
+namespace WaiterMediator;
 
 public class Mediator : IMediator
 {

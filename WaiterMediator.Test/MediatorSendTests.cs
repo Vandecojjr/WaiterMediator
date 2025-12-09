@@ -1,7 +1,7 @@
 ﻿using Moq;
 using TheMediator.Abstractions;
 
-namespace TheMediator.Test;
+namespace WaiterMediator.Test;
 
 public class MediatorSendTests
 {

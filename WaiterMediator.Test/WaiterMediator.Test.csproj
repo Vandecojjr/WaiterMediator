@@ -22,8 +22,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\TheMediator.Abstractions\TheMediator.Abstractions.csproj" />
-      <ProjectReference Include="..\TheMediator\TheMediator.csproj" />
+      <ProjectReference Include="..\WaiterMediator\WaiterMediator.csproj" />
     </ItemGroup>
 
 </Project>
