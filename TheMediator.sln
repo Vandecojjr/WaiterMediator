@@ -5,6 +5,10 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheMediator.Abstractions", "TheMediator.Abstractions\TheMediator.Abstractions.csproj", "{7314CC68-DFDF-4C3E-B48D-6EB8EFA2FFC4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheMediator", "TheMediator\TheMediator.csproj", "{81B0BE57-EE24-4D2B-B9D9-62CF37F7CB70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheMediator.Test", "TheMediator.Test\TheMediator.Test.csproj", "{80829623-F9B0-44EB-B551-0D414911B5C2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +22,13 @@ Global
 		{7314CC68-DFDF-4C3E-B48D-6EB8EFA2FFC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7314CC68-DFDF-4C3E-B48D-6EB8EFA2FFC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7314CC68-DFDF-4C3E-B48D-6EB8EFA2FFC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81B0BE57-EE24-4D2B-B9D9-62CF37F7CB70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81B0BE57-EE24-4D2B-B9D9-62CF37F7CB70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81B0BE57-EE24-4D2B-B9D9-62CF37F7CB70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81B0BE57-EE24-4D2B-B9D9-62CF37F7CB70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80829623-F9B0-44EB-B551-0D414911B5C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80829623-F9B0-44EB-B551-0D414911B5C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80829623-F9B0-44EB-B551-0D414911B5C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80829623-F9B0-44EB-B551-0D414911B5C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
