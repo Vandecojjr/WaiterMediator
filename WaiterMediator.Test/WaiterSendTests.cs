@@ -1,9 +1,9 @@
 ﻿using Moq;
-using TheMediator.Abstractions;
+using WaiterMediator.Abstractions;
 
 namespace WaiterMediator.Test;
 
-public class MediatorSendTests
+public class WaiterSendTests
 {
     [Fact]
     public async Task Send_Should_Invoke_Handler_And_Return_Response()
@@ -20,7 +20,7 @@ public class MediatorSendTests
             .Setup(x => x.GetService(typeof(IEnumerable<IPipelineBehavior<FakeRequest, string>>)))
             .Returns(pipelines);
 
-        var mediator = new Mediator(serviceProvider.Object);
+        var mediator = new Waiter(serviceProvider.Object);
         var response = await mediator.Send(new FakeRequest("TEST"));
 
         Assert.Equal("OK:TEST", response);
@@ -36,7 +36,7 @@ public class MediatorSendTests
             .Setup(x => x.GetService(It.IsAny<Type>()))
             .Returns(null);
 
-        var mediator = new Mediator(serviceProvider.Object);
+        var mediator = new Waiter(serviceProvider.Object);
 
         await Assert.ThrowsAsync<InvalidOperationException>(() =>
             mediator.Send(new FakeRequest("TEST")));

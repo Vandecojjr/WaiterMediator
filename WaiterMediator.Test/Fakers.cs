@@ -1,4 +1,5 @@
-﻿using TheMediator.Abstractions;
+﻿
+using WaiterMediator.Abstractions;
 
 public record FakeRequest(string Data) : IRequest<string>;
 

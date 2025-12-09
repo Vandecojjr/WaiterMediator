@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using TheMediator.Abstractions;
+using WaiterMediator.Abstractions;
 
 namespace WaiterMediator.Test;
 
@@ -10,12 +10,12 @@ public class DependencyRegistrationTests
     {
         var services = new ServiceCollection();
 
-        services.AddMediator(typeof(FakeRequestHandler).Assembly);
+        services.AddWaiter(typeof(FakeRequestHandler).Assembly);
 
         var provider = services.BuildServiceProvider();
 
         var handler = provider.GetService<IRequestHandler<FakeRequest, string>>();
-        var mediator = provider.GetService<IMediator>();
+        var mediator = provider.GetService<IWaiter>();
 
         Assert.NotNull(handler);
         Assert.NotNull(mediator);
@@ -26,7 +26,7 @@ public class DependencyRegistrationTests
     {
         var services = new ServiceCollection();
 
-        services.AddMediator(typeof(FakeNotificationHandler).Assembly);
+        services.AddWaiter(typeof(FakeNotificationHandler).Assembly);
 
         var provider = services.BuildServiceProvider();
 

@@ -22,6 +22,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\WaiterMediator.Extensions.Queues\WaiterMediator.Extensions.Queues.csproj" />
       <ProjectReference Include="..\WaiterMediator\WaiterMediator.csproj" />
     </ItemGroup>
 

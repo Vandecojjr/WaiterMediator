@@ -1,17 +1,33 @@
-﻿using TheMediator.Abstractions;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
+using WaiterMediator.Abstractions;
 
 namespace WaiterMediator;
 
-public class Mediator : IMediator
+/// <summary>
+/// Implementação do mediador responsável por enviar requisições e publicar notificações usando a
+/// resolução de dependências do <see cref="IServiceProvider"/>.
+/// </summary>
+public class Waiter : IWaiter
 {
     private readonly IServiceProvider _serviceProvider;
 
-    public Mediator(IServiceProvider serviceProvider)
+    /// <summary>
+    /// Cria uma nova instância de <see cref="Waiter"/>.
+    /// </summary>
+    /// <param name="serviceProvider">Provedor de serviços para resolver handlers e behaviors.</param>
+    public Waiter(IServiceProvider serviceProvider)
     {
         _serviceProvider = serviceProvider;
     }
-
+    
+    /// <summary>
+    /// Envia uma requisição e obtém a resposta do tipo especificado.
+    /// </summary>
+    /// <typeparam name="TResponse">Tipo da resposta esperada.</typeparam>
+    /// <param name="request">Instância da requisição que implementa <see cref="IRequest{TResponse}"/>.</param>
+    /// <param name="cancellationToken">Token para cancelamento da operação.</param>
+    /// <returns>A resposta resultante da execução do handler.</returns>
+    /// <exception cref="InvalidOperationException">Lançada quando nenhum handler é encontrado para a requisição.</exception>
     public async Task<TResponse> Send<TResponse>(IRequest<TResponse> request, CancellationToken cancellationToken = default)
     {
         var handlerType = typeof(IRequestHandler<,>).MakeGenericType(request.GetType(), typeof(TResponse));
@@ -27,7 +43,12 @@ public class Mediator : IMediator
             request,
             cancellationToken);
     }
-
+    
+    /// <summary>
+    /// Publica uma notificação para todos os handlers registrados para o tipo de notificação.
+    /// </summary>
+    /// <param name="notification">Instância da notificação que implementa <see cref="INotification"/>.</param>
+    /// <param name="cancellationToken">Token para cancelamento da operação.</param>
     public async Task Publish(INotification notification, CancellationToken cancellationToken = default)
     {
         var handlerType = typeof(INotificationHandler<>).MakeGenericType(notification.GetType());
@@ -39,7 +60,16 @@ public class Mediator : IMediator
             await (Task)method.Invoke(handler, new object[] { notification, cancellationToken })!;
         }
     }
-
+    
+    /// <summary>
+    /// Executa a cadeia de <see cref="IPipelineBehavior{TRequest, TResponse}"/> em torno do handler final.
+    /// </summary>
+    /// <typeparam name="TRequest">Tipo da requisição.</typeparam>
+    /// <typeparam name="TResponse">Tipo da resposta.</typeparam>
+    /// <param name="handlerExecution">Delegate que executa o handler final e retorna a resposta.</param>
+    /// <param name="request">Requisição sendo processada.</param>
+    /// <param name="cancellationToken">Token de cancelamento.</param>
+    /// <returns>A resposta resultante da execução do pipeline e do handler.</returns>
     private async Task<TResponse> ExecutePipeline<TRequest, TResponse>(
         Func<CancellationToken, Task<TResponse>> handlerExecution,
         TRequest request,
